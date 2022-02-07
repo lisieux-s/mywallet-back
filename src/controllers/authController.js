@@ -7,6 +7,11 @@ export async function signUp(req, res) {
     const user = req.body;
     const hashPassword = bcrypt.hashSync(user.password, 10);
 
+    const existingUser = await db.collection('users').findOne({email: {$eq: user.email}})
+    if(existingUser) {
+        return res.sendStatus(409)
+    }
+
     try {
         await db.collection('users').insertOne({
             ...user, 
