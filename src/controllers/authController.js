@@ -17,7 +17,6 @@ export async function signUp(req, res) {
             ...user, 
             password: hashPassword
         })
-        console.log(user)
         res.sendStatus(201)
     } catch(err) {
         console.log(err)
