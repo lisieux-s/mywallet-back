@@ -39,9 +39,12 @@ export async function signIn(req, res) {
       const token = uuid();
       await db.collection('sessions').insertOne({ token, userId: user._id});
 
+      delete user.password;
+
+      const auth = {user: user.name, token: token}
+      console.log(auth)
       
-      
-      res.send(token);
+      res.send(auth);
 
     } else {
       res.sendStatus(401);
