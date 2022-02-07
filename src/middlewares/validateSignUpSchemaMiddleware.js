@@ -1,6 +1,6 @@
 import signUpSchema from "../schemas/signUpSchema.js";
 
-export default function validateSignUpSchemaMiddleware(req, res, next) {
+export default function validateSignUpSchema(req, res, next) {
     const validation = signUpSchema.validate(req.body)
 
     if(validation.error) {
